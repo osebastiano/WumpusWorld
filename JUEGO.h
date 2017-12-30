@@ -1,123 +1,124 @@
 /**************************************************************************/
 /**************************************************************************/
-/***** 			 PONTIFICIA UNIVERSIDAD CAT”LICA DEL PER⁄ 			  *****/
-/***** 				 FACULTAD DE CIENCIAS E INGENIERÕA 				  *****/
-/***** 						SISTEMAS DIGITALES 						  *****/
+/***** 			      PONTIFICIA UNIVERSIDAD CAT√ìLICA DEL PER√ö 			      *****/
+/***** 				        FACULTAD DE CIENCIAS E INGENIER√çA 				      *****/
+/***** 						            SISTEMAS DIGITALES 						          *****/
 /**************************************************************************/
-/***** Archivo: JUEGO.h												  *****/
-/***** Microcontrolador: TM4C123GH6PM 								  *****/
-/***** MÛdulo(s) uC: Ninguno									 	  *****/
-/***** Autor: Cristhian Foester Llamocca Ccaico						  *****/
-/***** Fecha: Noviembre 2017 										  *****/
+/***** Archivo: JUEGO.h												                        *****/
+/***** Microcontrolador: TM4C123GH6PM 								                *****/
+/***** M√≥dulo(s) uC: Ninguno									 	                      *****/
+/***** Autor: Cristhian Foester Llamocca Ccaico						            *****/
+/***** Fecha: Noviembre 2017 										                      *****/
 /**************************************************************************/
-/***** Funciones para generaciÛn, muestra y actualizaciÛn de los ele_ *****/
-/***** mentos del juego.		 									  *****/
+/***** Funciones para generaci√≥n, muestra y actualizaci√≥n de los ele_ *****/
+/***** mentos del juego.		 									                        *****/
 /**************************************************************************/
 /**************************************************************************/
+
 #ifndef JUEGO_H_
 #define JUEGO_H_
 
 /**************************************************************************/
-/***** 			 					enter() 			  		 	  *****/
+/***** 			 					            enter() 			  		 	              *****/
 /**************************************************************************/
-/***** La funciÛn regresa al extremo izquierdo el cursor.			  *****/
+/***** La funci√≥n regresa al extremo izquierdo el cursor.			        *****/
 /**************************************************************************/
 void enter(void);
 
 /**************************************************************************/
-/***** 			 					arriba() 			  		 	  *****/
+/***** 			 					            arriba() 			  		 	              *****/
 /**************************************************************************/
-/***** La funciÛn mueve "n" posiciones hacia arriba el cursor. 		  *****/
+/***** La funci√≥n mueve "n" posiciones hacia arriba el cursor. 		    *****/
 /**************************************************************************/
 void arriba(uint8_t n);
 
 /**************************************************************************/
-/***** 			 					abajo() 			  		 	  *****/
+/***** 			 					             abajo() 			  		 	              *****/
 /**************************************************************************/
-/***** La funciÛn mueve "n" posiciones hacia abajo el cursor. 		  *****/
+/***** La funci√≥n mueve "n" posiciones hacia abajo el cursor. 		    *****/
 /**************************************************************************/
 void abajo(uint8_t n);
 
 /**************************************************************************/
-/***** 			 					derecha() 			  		 	  *****/
+/***** 			 					            derecha() 			  		 	            *****/
 /**************************************************************************/
-/***** La funciÛn mueve "n" posiciones hacia la derecha el cursor.	  *****/
+/***** La funci√≥n mueve "n" posiciones hacia la derecha el cursor.	  *****/
 /**************************************************************************/
 void derecha(uint8_t n);
 
 /**************************************************************************/
-/***** 			 					pos() 			  		 	 	  *****/
+/***** 			 					              pos() 			  		 	 	            *****/
 /**************************************************************************/
-/***** La funciÛn mueve hacia el tope de arriba al cursor.	 		  *****/
+/***** La funci√≥n mueve hacia el tope de arriba al cursor.	 		      *****/
 /**************************************************************************/
 void Pos(void);
 
 /**************************************************************************/
-/***** 			 				InferiorIz() 			  	 	 	  *****/
+/***** 			 				            InferiorIz() 			  	 	 	            *****/
 /**************************************************************************/
-/***** La funciÛn ubica al cursor en la posiciÛn inferior izquierda.  *****/
+/***** La funci√≥n ubica al cursor en la posici√≥n inferior izquierda.  *****/
 /**************************************************************************/
 void InferiorIz(void);
 
 /**************************************************************************/
-/***** 			 				LineaH() 			  	 	 	  	  *****/
+/***** 			 				              LineaH() 			  	 	 	  	          *****/
 /**************************************************************************/
-/***** La funciÛn genera una divisiÛn horizontal para el tablero.	  *****/
+/***** La funci√≥n genera una divisi√≥n horizontal para el tablero.	    *****/
 /**************************************************************************/
 void LineaH(void);
 
 /**************************************************************************/
-/***** 			 					LineaV() 			  	 	 	  *****/
+/***** 			 					            LineaV() 			  	 	 	              *****/
 /**************************************************************************/
-/***** La funciÛn genera una divisiÛn vertical para el tablero.  	  *****/
+/***** La funci√≥n genera una divisi√≥n vertical para el tablero.  	    *****/
 /**************************************************************************/
 void LineaV(void);
 
 /**************************************************************************/
-/***** 			 			GENERA_CUADRICULA() 			  	 	  *****/
+/***** 			 			          GENERA_CUADRICULA() 			  	 	          *****/
 /**************************************************************************/
-/***** La funciÛn muestra el tablero generado en el interfaz serial.  *****/
+/***** La funci√≥n muestra el tablero generado en el interfaz serial.  *****/
 /**************************************************************************/
 void GENERA_CUADRICULA(void);
 
 /**************************************************************************/
-/***** 			 				UbicaCasilla() 			  	 		  *****/
+/***** 			 				            UbicaCasilla() 			  	 		          *****/
 /**************************************************************************/
-/***** La funciÛn ubica al cursor en la casilla P. Se utiliza como	  *****/
-/***** referencia la posicion inferior izquierda.					  *****/
+/***** La funci√≥n ubica al cursor en la casilla P. Se utiliza como	  *****/
+/***** referencia la posicion inferior izquierda.					            *****/
 /**************************************************************************/
 void UbicaCasilla(uint8_t p);
 
 /**************************************************************************/
-/***** 			 				InferiorInicial() 		  	 		  *****/
+/***** 			 				           InferiorInicial() 		  	 		          *****/
 /**************************************************************************/
-/***** La funciÛn ubica al cursor en la posicion inferior izquierda   *****/
-/***** Se utiliza como referencia la posicion P.					  *****/
+/***** La funci√≥n ubica al cursor en la posicion inferior izquierda   *****/
+/***** Se utiliza como referencia la posicion P.					            *****/
 /**************************************************************************/
 void InferiorInicial(uint8_t p);
 
 /**************************************************************************/
-/***** 			 		Obtener_Bitx_Datop_Arreglo() 		  	 	  *****/
+/***** 			 		          Obtener_Bitx_Datop_Arreglo() 		  	 	      *****/
 /**************************************************************************/
-/***** La funciÛn desplaza el dato en la posiciÛn "p" del arreglo[]   *****/
-/***** y "x" indica el bit a desplazar dependiendo del nuemero a 	  *****/
-/***** enmascarar.												      *****/
+/***** La funci√≥n desplaza el dato en la posici√≥n "p" del arreglo[]   *****/
+/***** y "x" indica el bit a desplazar dependiendo del nuemero a 	    *****/
+/***** enmascarar.												                            *****/
 /**************************************************************************/
 uint8_t Obtener_Bitx_Datop_Arreglo(uint8_t arreglo[], uint8_t p, uint8_t x);
 
 /**************************************************************************/
-/***** 			 				EscribeDatos() 		  			 	  *****/
+/***** 			 				            EscribeDatos() 		  			 	          *****/
 /**************************************************************************/
-/***** La funciÛn muestra las percepciones del jugador en la casilla  *****/
-/***** actual en la que se encuentra.					  			  *****/
+/***** La funci√≥n muestra las percepciones del jugador en la casilla  *****/
+/***** actual en la que se encuentra.					  			                *****/
 /**************************************************************************/
 void EscribeDatos(uint8_t arreglo[], uint8_t p);
 
 /**************************************************************************/
-/***** 			 		MUESTRA_ELEMENTOS_TABLERO()   			 	  *****/
+/***** 			 		          MUESTRA_ELEMENTOS_TABLERO()   			 	      *****/
 /**************************************************************************/
-/***** La funciÛn muestra la informaciÛn de cada casilla (O, W, H, B, *****/
-/*****  T, A).					  			  						  *****/
+/***** La funci√≥n muestra la informaci√≥n de cada casilla (O, W, H, B, *****/
+/*****  T, A).					  			  						                        *****/
 /**************************************************************************/
 void MUESTRA_ELEMENTOS_TABLERO(uint8_t MiArreglo[]);
 
