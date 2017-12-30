@@ -1,16 +1,16 @@
 /**************************************************************************/
 /**************************************************************************/
-/***** 			 PONTIFICIA UNIVERSIDAD CAT”LICA DEL PER⁄ 			  *****/
-/***** 				 FACULTAD DE CIENCIAS E INGENIERÕA 				  *****/
-/***** 						SISTEMAS DIGITALES 						  *****/
+/***** 		 PONTIFICIA UNIVERSIDAD CAT√ìLICA DEL PER√ö	      *****/
+/***** 		    FACULTAD DE CIENCIAS E INGENIER√çA 	  	      *****/
+/***** 			    SISTEMAS DIGITALES 			      *****/
 /**************************************************************************/
-/***** Archivo: EEPROM.c 											  *****/
-/***** Microcontrolador: TM4C123GH6PM 								  *****/
-/***** MÛdulo(s) uC: EEPROM 										  *****/
-/***** Autor: Sebastian Caballa Barrientos 							  *****/
-/***** Fecha: Noviembre 2017 										  *****/
+/***** Archivo: EEPROM.c 					      *****/
+/***** Microcontrolador: TM4C123GH6PM 				      *****/
+/***** M√≥dulo(s) uC: EEPROM 					      *****/
+/***** Autor: Sebastian Caballa Barrientos 			      *****/
+/***** Fecha: Noviembre 2017 					      *****/
 /**************************************************************************/
-/***** Funciones para configuracion, grabado y lectura en EEPROM.	  *****/
+/***** Funciones para configuracion, grabado y lectura en EEPROM.     *****/
 /**************************************************************************/
 /**************************************************************************/
 
@@ -25,16 +25,16 @@
 #include "EEPROM.h"
 
 /**************************************************************************/
-/***** 				 	EEPROM_inicializacion() 					  *****/
+/***** 			EEPROM_inicializacion() 		      *****/
 /**************************************************************************/
 /***** Configura el EEPROM indicando que el ancho de palabra es de 32 *****/
-/***** bits. 														  *****/
+/***** bits. 							      *****/
 /**************************************************************************/
-/***** ENTRADAS: Ninguna 											  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** ENTRADAS: Ninguna 					      *****/
+/***** SALIDA: Ninguna 						      *****/
 /**************************************************************************/
 void EEPROM_inicializacion (void){
-		//***********				EEPROM inicializacion				***********//
+		//***********		EEPROM inicializacion		***********//
 		int i;
 		//Activar reloj del sistema para EEPROM
 		SYSCTL_RCGCEEPROM_R |= SYSCTL_RCGCEEPROM_R0;
@@ -46,9 +46,9 @@ void EEPROM_inicializacion (void){
 		while( EEPROM_EESUPP_R & (EEPROM_EESUPP_PRETRY | EEPROM_EESUPP_ERETRY) ){
 			EEPROM_EESUPP_R |= 0x01;
 		}
-		//Reiniciar mÛdulo EEPROM
+		//Reiniciar m√≥dulo EEPROM
 		SYSCTL_SREEPROM_R &=~ 0x01;
-		//Esperar a que estÈ disponible el mÛdulo
+		//Esperar a que est√© disponible el m√≥dulo
 		while((SYSCTL_SREEPROM_R & 0x01)!=0){}
 		//Delay (6 cycles plus funcition call overhead)
 		for (i=0;i<6000;i++);
@@ -60,22 +60,22 @@ void EEPROM_inicializacion (void){
 		}
 }
 /**************************************************************************/
-/***** 				 		EEPROM_escribe() 					  	  *****/
+/***** 			   	 EEPROM_escribe() 	  	      *****/
 /**************************************************************************/
-/***** Guarda el Dato de 32 bits en la EEPROM en la ubicaciÛn deseada *****/
+/***** Guarda el Dato de 32 bits en la EEPROM en la ubicaci√≥n deseada *****/
 /**************************************************************************/
-/***** ENTRADAS: Dato, N˙mero de Block, N˙mero de Offset			  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** ENTRADAS: Dato, N√∫mero de Block, N√∫mero de Offset	      *****/
+/***** SALIDA: Ninguna 						      *****/
 /**************************************************************************/
 void EEPROM_escribe(uint32_t dato, uint16_t block, uint8_t offset){
-	//***********						EEPROM write						***********//
-	//Esperar hasta que la EEPROM estÈ disponible para trabajar
+	//***********				EEPROM write				***********//
+	//Esperar hasta que la EEPROM est√© disponible para trabajar
 	while(EEPROM_EEDONE_R & EEPROM_EEDONE_WORKING){}
 	//Definimos una palabra de 32 bits
 	EEPROM_EESIZE_R |= EEPROM_EESIZE_WORDCNT_M;
 	//Escogemos el bloque (de 32) en el que escribiremos, solo si no utilizamos EEOFFSET
 	EEPROM_EEBLOCK_R |= block;
-	//Se selecciona el offset para ubicar el registro sobre el que se escribir·
+	//Se selecciona el offset para ubicar el registro sobre el que se escribir√°
 	EEPROM_EEOFFSET_R = offset;
 	//Utilizamos este registro seleccionado para almacenar
 	EEPROM_EERDWR_R = dato;
@@ -84,16 +84,16 @@ void EEPROM_escribe(uint32_t dato, uint16_t block, uint8_t offset){
 	EEPROM_EEBLOCK_R &=~ block;
 }
 /**************************************************************************/
-/***** 				 			EEPROM_lee() 					  	  *****/
+/***** 				 EEPROM_lee() 	 	  	      *****/
 /**************************************************************************/
-/***** Lee el Dato de 32 bits en la EEPROM en la ubicaciÛn deseada 	  *****/
+/***** Lee el Dato de 32 bits en la EEPROM en la ubicaci√≥n deseada    *****/
 /**************************************************************************/
-/***** ENTRADAS: N˙mero de Block, N˙mero de Offset			 		  *****/
-/***** SALIDA: Dato almacenado en EEPROM							  *****/
+/***** ENTRADAS: N√∫mero de Block, N√∫mero de Offset		      *****/
+/***** SALIDA: Dato almacenado en EEPROM			      *****/
 /**************************************************************************/
 uint32_t EEPROM_lee(uint16_t block, uint8_t offset){
-	//***********						EEPROM read							***********//
-	//Esperar hasta que la EEPROM estÈ disponible para trabajar
+	//***********				EEPROM read				***********//
+	//Esperar hasta que la EEPROM est√© disponible para trabajar
 	while(EEPROM_EEDONE_R & EEPROM_EEDONE_WORKING){}
 	//Variable para mostrar valor almacenado en EEPROM
 	uint32_t valor;
@@ -101,7 +101,7 @@ uint32_t EEPROM_lee(uint16_t block, uint8_t offset){
 	EEPROM_EESIZE_R |= EEPROM_EESIZE_WORDCNT_M;
 	//Escogemos el bloque (de 32) del que leeremos, solo si no utilizamos EEOFFSET
 	EEPROM_EEBLOCK_R |= block;
-	//Se selecciona el offset para ubicar el registro que se leer·
+	//Se selecciona el offset para ubicar el registro que se leer√°
 	EEPROM_EEOFFSET_R |= offset;
 	//Utilizamos este registro seleccionado leer data
 	valor = EEPROM_EERDWR_R;
