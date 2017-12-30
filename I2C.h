@@ -1,46 +1,49 @@
 /**************************************************************************/
 /**************************************************************************/
-/***** 			 PONTIFICIA UNIVERSIDAD CAT”LICA DEL PER⁄ 			  *****/
-/***** 				 FACULTAD DE CIENCIAS E INGENIERÕA 				  *****/
-/***** 						SISTEMAS DIGITALES 						  *****/
+/***** 			      PONTIFICIA UNIVERSIDAD CAT√ìLICA DEL PER√ö 			      *****/
+/***** 				        FACULTAD DE CIENCIAS E INGENIER√çA 				      *****/
+/***** 						            SISTEMAS DIGITALES 						          *****/
 /**************************************************************************/
-/***** Archivo: I2C.h												  *****/
-/***** Microcontrolador: TM4C123GH6PM 								  *****/
-/***** MÛdulo(s) uC: I2C 										 	  *****/
-/***** Autor: Sebastian Caballa Barrientos 							  *****/
-/***** Fecha: Noviembre 2017 										  *****/
+/***** Archivo: I2C.h												                          *****/
+/***** Microcontrolador: TM4C123GH6PM 								                *****/
+/***** M√≥dulo(s) uC: I2C 										 	                        *****/
+/***** Autor: Sebastian Caballa Barrientos 					            		  *****/
+/***** Fecha: Noviembre 2017 										                      *****/
 /**************************************************************************/
-/***** Funciones para inicializaciÛn, y envÌo y recepciÛn de datos a  *****/
-/***** travÈs de comunicaciÛn I2C. 									  *****/
+/***** Funciones para inicializaci√≥n, y env√≠o y recepci√≥n de datos a  *****/
+/***** trav√©s de comunicaci√≥n I2C. 									                  *****/
 /**************************************************************************/
 /**************************************************************************/
 
 #ifndef I2C_H_
 #define I2C_H_
-/***** 				 		I2C_inicialization() 					  *****/
 /**************************************************************************/
-/***** Configura el mÛdulo I2C0 como maestro para enviar y recibir 	  *****/
-/***** data.														  *****/
+/***** 				 		          I2C_inicialization() 					            *****/
 /**************************************************************************/
-/***** ENTRADAS: Ninguna 											  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** Configura el m√≥dulo I2C0 como maestro para enviar y recibir 	  *****/
+/***** data.														                              *****/
+/**************************************************************************/
+/***** ENTRADAS: Ninguna 											                        *****/
+/***** SALIDA: Ninguna 												                        *****/
 /**************************************************************************/
 void I2C_inicialization(void);
-/***** 				 			I2C_send() 							  *****/
 /**************************************************************************/
-/***** EnvÌa un dato a la direcciÛn escogida					 	  *****/
+/***** 				 			            I2C_send() 							              *****/
 /**************************************************************************/
-/***** ENTRADAS: Direccion base, Dato								  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** Env√≠a un dato a la direcci√≥n escogida					 	              *****/
+/**************************************************************************/
+/***** ENTRADAS: Direccion base, Dato								                  *****/
+/***** SALIDA: Ninguna 												                        *****/
 /**************************************************************************/
 void I2C_send(int8_t,uint8_t);
-/***** 				 			I2CReceive() 						  *****/
 /**************************************************************************/
-/***** Recibe un dato de la direcciÛn escogida en el registro 		  *****/
-/***** especificado	  												  *****/
+/***** 				 			            I2CReceive() 						              *****/
 /**************************************************************************/
-/***** ENTRADAS: Direccion base, Registro especÌfico				  *****/
-/***** SALIDA: Dato 												  *****/
+/***** Recibe un dato de la direcci√≥n escogida en el registro 		    *****/
+/***** especificado	  												                        *****/
+/**************************************************************************/
+/***** ENTRADAS: Direccion base, Registro espec√≠fico				          *****/
+/***** SALIDA: Dato 												                          *****/
 /**************************************************************************/
 uint32_t I2CReceive(uint32_t, uint8_t);
 
