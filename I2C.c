@@ -1,17 +1,17 @@
 /**************************************************************************/
 /**************************************************************************/
-/***** 			 PONTIFICIA UNIVERSIDAD CAT”LICA DEL PER⁄ 			  *****/
-/***** 				 FACULTAD DE CIENCIAS E INGENIERÕA 				  *****/
-/***** 						SISTEMAS DIGITALES 						  *****/
+/***** 		   PONTIFICIA UNIVERSIDAD CAT√ìLICA DEL PER√ö 	      *****/
+/***** 		       FACULTAD DE CIENCIAS E INGENIER√çA 	      *****/
+/***** 				SISTEMAS DIGITALES 	              *****/
 /**************************************************************************/
-/***** Archivo: I2C.c												  *****/
-/***** Microcontrolador: TM4C123GH6PM 								  *****/
-/***** MÛdulo(s) uC: I2C 										 	  *****/
-/***** Autor: Sebastian Caballa Barrientos 							  *****/
-/***** Fecha: Noviembre 2017 										  *****/
+/***** Archivo: I2C.h			                              *****/
+/***** Microcontrolador: TM4C123GH6PM 				      *****/
+/***** M√≥dulo(s) uC: I2C 			                      *****/
+/***** Autor: Sebastian Caballa Barrientos 			      *****/
+/***** Fecha: Noviembre 2017 					      *****/
 /**************************************************************************/
-/***** Funciones para inicializaciÛn, y envÌo y recepciÛn de datos a  *****/
-/***** travÈs de comunicaciÛn I2C. 									  *****/
+/***** Funciones para inicializaci√≥n, y env√≠o y recepci√≥n de datos a  *****/
+/***** trav√©s de comunicaci√≥n I2C.  		                      *****/
 /**************************************************************************/
 /**************************************************************************/
 
@@ -20,20 +20,21 @@
 #include "I2C.h"
 
 
-/***** 				 		I2C_inicialization() 					  *****/
 /**************************************************************************/
-/***** Configura el mÛdulo I2C0 como maestro para enviar y recibir 	  *****/
-/***** data.														  *****/
+/***** 			   I2C_inicialization()			      *****/
 /**************************************************************************/
-/***** ENTRADAS: Ninguna 											  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** Configura el m√≥dulo I2C0 como maestro para enviar y recibir    *****/
+/***** data.							      *****/
+/**************************************************************************/
+/***** ENTRADAS: Ninguna 					      *****/
+/***** SALIDA: Ninguna 						      *****/
 /**************************************************************************/
 void I2C_inicialization(void){
-	 //Habilita el mÛdulo I2C0
+	 //Habilita el m√≥dulo I2C0
 	 SYSCTL_RCGCI2C_R |= 0x0001;
 	 //Espera a que realmente se active
 	 while((SYSCTL_PRI2C_R & 0x0001) == 0){};
-	 //Habilita perifÈrico GPIO que contiene el I2C0, PORTB
+	 //Habilita perif√©rico GPIO que contiene el I2C0, PORTB
 	 SYSCTL_RCGCGPIO_R |= 0x0002;
 	 //Espera a que realmente se active
 	 while((SYSCTL_PRGPIO_R & 0x0002) == 0){};
@@ -50,17 +51,19 @@ void I2C_inicialization(void){
 	 //Habilitar funcion de maestro
 	 I2C0_MCR_R = 16;
 }
-/***** 				 			I2C_send() 							  *****/
+
 /**************************************************************************/
-/***** EnvÌa un dato a la direcciÛn escogida					 	  *****/
+/***** 				 I2C_send() 			      *****/
 /**************************************************************************/
-/***** ENTRADAS: Direccion base, Dato								  *****/
-/***** SALIDA: Ninguna 												  *****/
+/***** Env√≠a un dato a la direcci√≥n escogida			      *****/
+/**************************************************************************/
+/***** ENTRADAS: Direccion base, Dato				      *****/
+/***** SALIDA: Ninguna 						      *****/
 /**************************************************************************/
 void I2C_send(int8_t slave, uint8_t data){
-	//Esperar a que el mÛdulo I2C estÈ disponible
+	//Esperar a que el m√≥dulo I2C est√© disponible
 	while(I2C0_MCS_R & I2C_MCS_BUSY){};// wait for I2C ready
-	//Selecciona direcciÛn de envio
+	//Selecciona direcci√≥n de envio
 	I2C0_MSA_R = (slave<<1) & 0xFE;
 	//Se configura para envio
 	I2C0_MSA_R &= ~(0x01);
@@ -68,21 +71,23 @@ void I2C_send(int8_t slave, uint8_t data){
 	I2C0_MDR_R = data;
 	I2C0_MCS_R = 0x00000020;
 	I2C0_MCS_R |=   0x00000007;
-	//Esperar a que termine la trasnmiciÛn
+	//Esperar a que termine la trasnmici√≥n
 	while(I2C0_MCS_R & I2C_MCS_BUSY){};
 }
-/***** 				 			I2CReceive() 						  *****/
+
 /**************************************************************************/
-/***** Recibe un dato de la direcciÛn escogida en el registro 		  *****/
-/***** especificado	  												  *****/
+/***** 				I2CReceive() 			      *****/
 /**************************************************************************/
-/***** ENTRADAS: Direccion base, Registro especÌfico				  *****/
-/***** SALIDA: Dato 												  *****/
+/***** Recibe un dato de la direcci√≥n escogida en el registro 	      *****/
+/***** especificado	  					      *****/
+/**************************************************************************/
+/***** ENTRADAS: Direccion base, Registro espec√≠fico		      *****/
+/***** SALIDA: Dato 						      *****/
 /**************************************************************************/
 uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg){
-		///Esperar a que mÛdulo estÈ disponible para trabajar
+		///Esperar a que m√≥dulo est√© disponible para trabajar
 		while(I2C0_MCS_R & I2C_MCS_BUSY){};
-		//Selecciona direcciÛn de envio
+		//Selecciona direcci√≥n de envio
 		I2C0_MSA_R = (slave_addr<<1) & 0xFE;
 		//Especifica el registro a leer
 		I2C0_MDR_R = reg;
@@ -91,7 +96,7 @@ uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg){
 		I2C0_MCS_R |= 0x00000003;
 		//Esperar a que I2C termine el proceso
 		while(I2C0_MCS_R & I2C_MCS_BUSY){};
-		//Escoger la direcciÛn de la cual se va a leer
+		//Escoger la direcci√≥n de la cual se va a leer
 		I2C0_MSA_R |= (slave_addr << 1)|1;
 		I2C0_MCS_R = 0x00000020;
 		I2C0_MCS_R |=   0x00000007;
