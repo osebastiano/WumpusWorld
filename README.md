@@ -1,3 +1,4 @@
+![alt text](http://clipartix.com/wp-content/uploads/2016/06/Monster-clipart-free-clipart-images.png)
 # Description
 This is an adaptation of The Wumpus World for the Tiva LaunchPad C Series TM4C123GH6PM microcontroller.
 # WumpusWorld
